@@ -7,7 +7,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.hanging.ItemFrame;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.entity.CollideEntityEvent;
+import org.spongepowered.api.event.entity.InteractEntityEvent;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStartingServerEvent;
 import org.spongepowered.api.plugin.Plugin;
@@ -56,5 +58,11 @@ public class ItemFrameProtector {
                 event.setCancelled(true);
                 break;
             }
+    }
+
+    @Listener
+    public void onLeftClick(InteractEntityEvent.Primary e){
+        if (e.getTargetEntity() instanceof ItemFrame)
+            e.setCancelled(true);
     }
 }
