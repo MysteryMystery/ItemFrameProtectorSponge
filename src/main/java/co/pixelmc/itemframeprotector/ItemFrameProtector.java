@@ -4,8 +4,10 @@ import com.google.inject.Inject;
 import org.slf4j.Logger;
 import org.spongepowered.api.Game;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.entity.Item;
 import org.spongepowered.api.entity.hanging.ItemFrame;
+import org.spongepowered.api.event.Event;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.block.InteractBlockEvent;
 import org.spongepowered.api.event.entity.CollideEntityEvent;
@@ -61,8 +63,8 @@ public class ItemFrameProtector {
     }
 
     @Listener
-    public void onLeftClick(InteractEntityEvent.Primary e){
-        if (e.getTargetEntity() instanceof ItemFrame)
+    public void onLeftClick(InteractEntityEvent.Primary.MainHand e){
+        if (e.getTargetEntity().getType() == EntityTypes.ITEM_FRAME)
             e.setCancelled(true);
     }
 }
